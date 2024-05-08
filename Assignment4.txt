@@ -1,0 +1,536 @@
+/*1. Write a program in Java to develop user defined exception for 'Divide by Zero'
+error.*/
+import java.util.*;
+class A1
+{
+	public static void main(String args[])
+	{
+		try
+		{
+			int a=50/0;
+		}
+		catch(ArithmeticException e)
+		{
+			System.out.println("Division with 0 is not possible...!!!");
+		}
+	}
+}
+
+
+/*Write an small application in Java to develop Banking Application in which user
+deposits the amount Rs1000.00 and then start withdrawing of Rs 400.00, Rs300.00
+and it throws exception "Not Sufficient Fund" when user withdraws Rs. 500
+thereafter*/
+import java.util.*;
+class A2
+{
+	public static void main(String args[])
+	{
+		int amt=1000;
+		int wd;
+		Scanner sc=new Scanner(System.in);
+		while(amt!=0)
+		{
+			System.out.println("Enter the amt you want to withdraw");
+			wd=sc.nextInt();
+			try
+			{
+				if(wd>amt)
+				{
+					throw new ArithmeticException("Not sufficient Fund");
+				}
+				else
+				{
+					amt=amt-wd;
+					System.out.println("Amount withdrawn");
+				}
+			}
+			catch(ArithmeticException e)
+			{
+				System.out.println(e);
+			}
+		}
+	}
+}
+
+
+Que 3
+/*Write a java program to handle the exception using try and multiple catch block*/
+class A3
+{
+	public static void main(String args[])
+	{
+		try
+		{
+			int a[]=new int[2];
+			a[2]=30/10;
+		}
+		catch(ArrayIndexOutOfBoundsException e)
+		{
+			System.out.println("Index is out of range");
+		}
+		catch(ArithmeticException e)
+		{
+			System.out.println("Arithmetic exception is held");
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+	}
+}
+
+
+Que 4
+/*Write a program to handle the user defined exception using throw keyword*/
+class A4
+{
+	public static void main(String args[])
+	{
+		int a=20;
+		try
+		{
+			if(a>15)
+			{
+				throw new ArithmeticException("Out of range");
+			}
+			else
+			{
+				System.out.println("Within the range");
+			}
+		}
+		catch(ArithmeticException e)
+		{
+			System.out.println(e);
+		}
+	}
+}
+
+Que 5
+/*Write a program which create a class named Triangle which throw an exception if
+the CartesianPoint instances passed as parameter does not specify an appropriate
+Triangle i.e. if the three points are in a straight line*/
+import java.util.*;
+class a5
+{
+	public static void main(String args[])
+	{
+		try
+		{
+			int x1=1;
+			int x2=2;
+			int x3=3;
+			int y1=1;
+			int y2=2;
+			int y3=3;
+			int res1,res2,res3;
+			res1=(x2-x1)*(y2-y1);
+			res2=(x3-x2)*(y3-y2);
+			res3=(x1-x3)*(y1-y3);
+			if(res1==res2 && res1==res3)
+			{
+				System.out.println("It is Cartian product");
+			}
+			else
+			{
+				throw new ArithmeticException("It is not cartesian product");
+			}
+		}
+		catch(ArithmeticException e)
+		{
+			System.out.println(e);
+		}
+	}
+}
+
+
+Que 6
+/*Write a program that executes two threads. One thread displays Thread1” every
+2,000 milliseconds, and the other displays “Thread2” every 4,000 milliseconds.
+Create the threads by extending the Thread class.*/
+import java.util.*;
+class Thread1 extends Thread
+{
+	public void run()
+	{
+		for(int i=1;i<5;i++)
+		{
+			System.out.println("Thread 1 is running");
+			try
+			{
+				Thread.sleep(2000);
+			}	
+			catch(Exception e)
+			{
+				System.out.println(e);
+			}
+		}
+	}
+}
+class Thread2 extends Thread
+{
+	public void run()
+	{
+		for(int i=1;i<5;i++)
+		{
+			System.out.println("Thread2 is running");
+			try
+			{
+				Thread.sleep(4000);
+			}
+			catch(Exception e)
+			{
+				System.out.println(e);
+			}
+		}
+	}
+}
+class A6
+{
+	public static void main(String args[])
+	{
+		Thread1 t1 = new Thread1();
+		Thread2 t2 = new Thread2();
+		t1.start();
+		t2.start();
+	}
+}
+
+
+Que 7
+/*Write a program that executes two threads. One thread will print the even
+numbers and the thread will print odd numbers from 1 to 50.*/
+import java.util.*;
+class Thread1 extends Thread
+{
+	public void run()
+	{
+		for(int i=1;i<=50;i++)
+		{
+			try
+			{
+				if(i%2==0)
+				{
+					System.out.println("Even no is: "+i);
+				}
+			}
+			catch(Exception e)
+			{
+				System.out.println(e);
+			}
+		}
+	}
+}
+class Thread2 extends Thread
+{
+	public void run()
+	{
+		for(int i=1;i<50;i++)
+		{
+			try
+			{
+				if(i%2!=0)
+				{
+					System.out.println("Odd no is: "+i);
+				}
+			}
+			catch(ArithmeticException e)
+			{
+				System.out.println(e);
+			}
+		}
+	}
+}
+class A7
+{
+	public static void main(String args[])
+	{
+		Thread1 t1=new Thread1();
+		Thread2 t2=new Thread2();
+		t1.start();
+		t2.start();
+	}
+}
+
+Que 8
+/*Write a program to create a thread that implement runnable interface*/
+import java.util.*;
+class A8 implements Runnable
+{
+	public void run()
+	{
+		System.out.println("Thread is running..!!!");
+	}
+	public static void main(String args[])
+	{
+		A8 m1=new A8();
+		Thread m2=new Thread(m1);
+		m2.start();
+	}
+}
+
+Que 9
+/*Write a java program which create threads using the thread class.*/
+import java.util.*;
+class A9 extends Thread
+{
+	public void run()
+	{
+		System.out.println("Thread is created using thread class");
+	}
+	public static void main(String args[])
+	{
+		A9 a1=new A9();
+		Thread a2=new Thread(a1);
+		a2.start();
+	}
+}
+
+Que 10
+/*Write a java program which manipulates and shows the priority of threads*/
+import java.util.*;
+class A10 extends Thread
+{
+	public void run()
+	{
+		System.out.println(Thread.currentThread().getName()+" thread is running");
+		System.out.println("Priority of thread is: "+Thread.currentThread().getPriority());
+	}
+	public static void main(String args[])
+	{
+		A10 a3=new A10();
+		A10 a4=new A10();
+		a3.start();
+		a4.start();
+		a3.setPriority(Thread.MIN_PRIORITY);
+		a4.setPriority(Thread.MAX_PRIORITY);
+		System.out.println("After setting priority");
+		System.out.println("Priority of thread 1: "+a3.getPriority());
+		System.out.println("Priority of thread 2: "+a4.getPriority());
+	}
+}
+
+Que 11
+/*Write a java program to create two threads. One using runnable interface and
+other by extending thread. First thread will print all odd numbers and second will
+print all even numbers between 1 to 10*/
+import java.util.*;
+class Thread1 implements Runnable
+{
+	public void run()
+	{
+		for(int i=1;i<=10;i++)
+		{
+			if(i%2==0)
+			{
+				System.out.println("Even number is: "+i);
+			}
+		}
+	}
+}
+class Thread2 extends Thread
+{
+	public void run()
+	{
+		for(int i=1;i<=10;i++)
+		{
+			if(i%2!=0)
+			{
+				System.out.println("Odd number is: "+i);
+			}
+		}
+	}
+}
+class A11
+{
+	public static void main(String args[])
+	{
+		Thread1 h1=new Thread1();
+		Thread h2=new Thread(h1);
+		Thread2 h3=new Thread2();
+		h2.start();
+		h3.start();
+	}
+}
+
+
+Que 12
+
+/*Write a program to create three threads. Assign priority to thread. Make a class
+to test them. Also use Sleep method to give pause between them*/
+import java.util.*;
+class Thread1 extends Thread
+{
+	public void run()
+	{
+		System.out.println("Thread1 is running");
+		System.out.println("Thread1's priority: "+Thread.currentThread().getPriority());
+		try
+		{
+			Thread.sleep(1000);
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+	}
+}
+class Thread2 extends Thread
+{
+	public void run()
+	{
+		System.out.println("Thread2 is running");
+		System.out.println("Thread2's priority: "+Thread.currentThread().getPriority());
+		try
+		{
+			Thread.sleep(1000);
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+	}
+}
+class Thread3 extends Thread
+{
+	public void run()
+	{
+		System.out.println("Thread3 is running");
+		System.out.println("Thread3's priority: "+Thread.currentThread().getPriority());
+		try
+		{
+			Thread.sleep(1000);
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+	}
+}
+class A12
+{
+	public static void main(String args[])
+	{
+		Thread1 d1=new Thread1();
+		Thread2 d2=new Thread2();
+		Thread3 d3=new Thread3();
+		d1.start();
+		d2.start();
+		d3.start();
+		d1.setPriority(2);
+		d2.setPriority(4);
+		d3.setPriority(1);
+	}
+}
+
+Que 13
+/*Write a java program to create 3 threads using Thread class. Three threads should
+calculate the sum of 1 to 5, 6 to 10 and 11 to 15 respectively. After all thread finishes
+main thread should print the sum and average.*/
+import java.util.*;
+class Thread1 extends Thread
+{
+	public void run()
+	{
+		int sum=0;
+		for(int i=1;i<=5;i++)
+		{
+			sum=sum+i;
+		}
+		System.out.println("Sum of thread1: "+sum);
+		System.out.println("Average of thread1: "+sum/5);
+	}
+}
+class Thread2 extends Thread
+{
+	public void run()
+	{
+		int sum=0;
+		for(int i=6;i<=10;i++)
+		{
+			sum=sum+i;
+		}
+		System.out.println("Sum of thread2: "+sum);
+		System.out.println("Average of thread2: "+sum/5);
+	}
+}
+class Thread3 extends Thread
+{
+	public void run()
+	{
+		int sum=0;
+		for(int i=11;i<=15;i++)
+		{
+			sum=sum+i;
+		}
+		System.out.println("Sum of thread3: "+sum);
+		System.out.println("Average of thread3: "+sum/5);
+	}
+}
+class A13
+{
+	public static void main(String args[])
+	{
+		Thread1 r1=new Thread1();
+		Thread2 r2=new Thread2();
+		Thread3 r3=new Thread3();
+		r1.start();
+		r2.start();
+		r3.start();
+	}
+}
+
+
+Que 14
+/*Write a java program that creates two threads using Runnable interface. One
+thread should display Thread 1 at every 1000 Milliseconds and other should
+display Thread 2 at every 3000 milliseconds.*/
+import java.util.*;
+class Thread1 implements Runnable
+{
+	public void run()
+	{
+		for(int i=1;i<5;i++)
+		{
+			System.out.println("Thread1...!!!");
+			try
+			{
+				Thread.sleep(1000);
+			}
+			catch(Exception e)
+			{
+				System.out.println(e);
+			}
+		}
+	}
+}
+class Thread2 implements Runnable
+{
+	public void run()
+	{
+		for(int i=0;i<5;i++)
+		{
+			System.out.println("Thread2...!!!");
+			try
+			{
+				Thread.sleep(3000);
+			}
+			catch(Exception e)
+			{
+				System.out.println(e);
+			}
+		}
+	}
+}
+class A14
+{
+	public static void main(String args[])
+	{
+		Thread1 e1=new Thread1();
+		Thread obj=new Thread(e1);
+		obj.start();
+		Thread2 e2=new Thread2();
+		Thread obj1=new Thread(e2);
+		obj1.start();
+	}
+}
